@@ -1,25 +1,15 @@
 import React, { useContext } from 'react';
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/logo.png";
 import moment from "moment";
 import Marquee from "react-fast-marquee";
-import { Link } from 'react-router-dom';
-import user from "../../../assets/user.png"
-import { AuthContext } from '../../../../Provider/AuthProvider';
+import { Link } from "react-router-dom";
+import user from "../../../assets/user.png";
+import { AuthContext } from "../../../../Provider/AuthProvider";
 import { FaUser } from "react-icons/fa6";
 
 
-
-const Header = () => {
-  const { user,logOut } = useContext(AuthContext);
-
-  const handleLogOut = () => {
-    logOut()
-      .then(() => { })
-      .catch(error => {
-      console.error(error);
-    })
-  }
-
+const NavigationBar = () => {
+      const { user } = useContext(AuthContext);
     return (
       <div className="mb-5">
         <div className="mx-auto w-full text-center">
@@ -38,7 +28,7 @@ const Header = () => {
         </div>
         <div className="navbar bg-light text-primary-content mt-2 flex justify-evenly">
           <div className="">
-            <Link className="text-white pl-5" to="/category/0">
+            <Link className="text-white pl-5" to="/">
               Home
             </Link>
             <Link className="text-white pl-5" to="/">
@@ -55,9 +45,11 @@ const Header = () => {
               </Link>
             )}
             {user ? (
-              <Link onClick={handleLogOut} className="btn btn-outline btn-info">Logout</Link>
+              <Link className="btn btn-outline btn-info">Logout</Link>
             ) : (
-              <Link to='/login' className="btn btn-outline btn-info">LogIn</Link>
+              <Link to="/login" className="btn btn-outline btn-info">
+                LogIn
+              </Link>
             )}
           </div>
         </div>
@@ -65,4 +57,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default NavigationBar;
