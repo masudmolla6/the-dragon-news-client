@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Register = () => {
     const { user, createUser } = useContext(AuthContext);
+  const [accepted, setAccepted] = useState(false);
         const handleSubmit = (event) => {
           event.preventDefault();
             const form = event.target;
@@ -23,7 +24,11 @@ const Register = () => {
                 .catch(error => {
                 console.error(error);
                 })
-        };
+  };
+  
+  const handleAccept = (event) => {
+    setAccepted(event.target.checked);
+  }
     return (
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col">
@@ -88,18 +93,23 @@ const Register = () => {
                   </p>
                 </label>
               </div>
-              <div className="form-control">
-                <label className="cursor-pointer label">
-                  <span className="label-text">Remember me</span>
-                  <input
-                    type="checkbox"
-                    checked="checked"
-                    className="checkbox checkbox-success"
-                  />
+              <div className="flex items-center mb-4">
+                <input
+                  onClick={handleAccept}
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  htmlFor="default-checkbox"
+                  className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Accept <Link className='text-orange-500 btn-link' to='/terms'>Term And Condition.</Link>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button disabled={!accepted} className="btn btn-primary">Register</button>
               </div>
             </form>
           </div>
