@@ -5,8 +5,6 @@ import { initializeApp } from "firebase/app";
 
 
 
-console.log("enverment variable", import.meta.env.VITE_apiKey);
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
