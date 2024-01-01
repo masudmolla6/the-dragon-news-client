@@ -2,7 +2,8 @@ import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineShare,HiOutlineBookmark,HiEye } from "react-icons/hi";
-import Rating from 'react-rating';
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 import { FaStar, FaStarHalfStroke ,FaRegStar} from "react-icons/fa6";
 
 
@@ -57,16 +58,10 @@ const NewsCard = ({ news }) => {
           </p>
         </div>
         <hr className="w-10/12 mx-auto" />
-        <div className='flex justify-between px-6 py-6'>
-          <div>
-            <Rating
-              placeholderRating={rating?.number}
-              readonly
-              emptySymbol={<FaRegStar></FaRegStar>}
-              placeholderSymbol={<FaStar className='text-orange-400'></FaStar>}
-              fullSymbol={<FaStar></FaStar>}
-            ></Rating>
-            <span className='pl-2'>{rating?.number}</span>
+        <div className="flex justify-between px-6 py-6">
+          <div className="flex">
+            <Rating style={{ maxWidth: 100 }} value={rating?.number} readOnly />
+            <span className="pl-2">{rating?.number}</span>
           </div>
           <div className="flex items-center">
             <p className="pr-3">
